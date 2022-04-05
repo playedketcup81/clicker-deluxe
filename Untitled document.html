@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+
+
+
+
+
+
+<body>
+<script>
+var click_count = 10;
+var upgrade_count = 1;
+var upgrade_cost = 15;
+
+
+function btn_right_amount()
+{
+
+
+  if(click_count >= upgrade_count)
+  {
+    upgrade_count = upgrade_count + 1;
+    click_count = click_count - upgrade_cost;
+    upgrade_cost = upgrade_cost + 1;
+  }
+  update_display();
+
+
+
+
+}
+
+
+function dont_go_over()
+{
+  if(click_count <= 0)
+  {
+    click_count = 0
+  }
+
+
+}
+
+
+function buy_x5()
+{
+
+
+  if(click_count >= upgrade_cost * 5 + 5)
+  {
+    upgrade_cost = upgrade_cost + 5;
+    click_count = click_count - upgrade_cost*5 - 5;
+    upgrade_count = upgrade_count + 5;
+    dont_go_over();
+  }
+  update_display();
+
+
+}
+
+
+function buy_x10()
+{
+  if(click_count >= upgrade_cost + 10)
+  {
+    upgrade_cost = upgrade_cost + 10;
+    click_count = click_count - upgrade_cost*10 - 10;
+    upgrade_count = upgrade_count + 10;
+    dont_go_over();
+  }
+  update_display();
+
+
+}
+
+
+function buy_x100()
+{
+  if(click_count >= upgrade_cost + 100)
+  {
+    click_count = click_count - upgrade_cost * 100;
+    upgrade_cost = upgrade_cost + 100;
+    upgrade_count = upgrade_count + 100;
+    dont_go_over();
+  }
+  update_display();
+
+
+}
+
+
+function btn_click_me()
+{
+  click_count = click_count + upgrade_count;
+  update_display();
+}
+
+
+function btn_reset()
+{
+  click_count = 0;
+  update_display();
+}
+
+
+function update_display()
+{
+  document.getElementById('counter').textContent = click_count;
+  document.getElementById('upgrade').textContent = upgrade_count;
+  document.getElementById('upgrade_btn').textContent = upgrade_count;
+  document.getElementById('upgrade_cost').textContent = upgrade_cost;
+
+
+
+
+}
+</script>
+
+
+<button type="button" onclick="btn_click_me();"><img src= "click.jpeg" width = "225" height = "225"</button>
+<div id="counter"></div>
+<button type ="button" onclick="btn_right_amount();">click me if you have <div id = "upgrade_btn"></div></button>
+<button type="button" onclick="buy_x5();">click to buy x5</button>
+<button type="button" onclick="buy_x10();">click to buy x10</button>
+<button type="button" onclick="buy_x100();">click to buy x100</button>
+
+
+<h1></h1>
+
+
+<button type="button" onclick="btn_reset();">reset</button>
+
+
+
+
+<h1></h1>
+
+
+
+
+<p1>you get <div id = "upgrade"></div> per click</p1>
+
+
+
+
+<h1></h1>
+<p2>the next upgrade cost <div id ="upgrade_cost"></div></p2>
+
+
+
+
+
+
+
+
+<p3>this is version 0.3.5</p3>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>
