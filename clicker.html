@@ -1,133 +1,86 @@
 <!DOCTYPE html>
 <html>
-
-
-
-
 <body>
+<style>
+.p1 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
 <script>
-var click_count = 10;
-var upgrade_count = 1;
-var upgrade_cost = 15;
+var wood1 = 0;
+var wood2 = 0;
+var wood3 = 0;
+var clicks = 100;
+//cfm means "click for money"
+function cfm(){
+	clicks = clicks + 10;
+}
+//"its like opening a kinder suprise toy"-EA sometime between 2005 - 2019
+function wood_open() {
+    if (clicks >= 10){
+        clicks = clicks - 10;
+        var random = Math.floor(Math.random()*4);
+        if (random == 1){
+            wood1 = wood1 + 1;
+            update();
+        }
+        if (random == 2){
+            wood2 = wood2 + 1;
+            update();
+        }
+        if (random == 3){
+            wood3 = wood3 + 1;
+            update();
 
-function btn_right_amount()
-{
 
-  if(click_count >= upgrade_count)
-  {
-    upgrade_count = upgrade_count + 1;
-    click_count = click_count - upgrade_cost;
-    upgrade_cost = upgrade_cost + 1;
-    dont_go_over();
-  }
-  update_display();
-
-
+        }
+    }
+}
+// the sell wood section.
+function sellwood1(){
+    if(wood1 >= 1){
+        wood1 = wood1 - 1;
+        clicks = clicks + 8;
+        update();
+    }
 }
 
-function dont_go_over()
-{
-  if(click_count <= 0)
-  {
-    click_count = 0
-  }
-
+function sellwood2(){
+    if(wood2 >= 1){
+        wood2 = wood2 - 1;
+        clicks = clicks + 12;
+        update();
+    }
+}
+function sellwood3(){
+    if(wood3 >= 1){
+        wood3 = wood3 - 1;
+        clicks = clicks + 15;
+        update();
+    }
 }
 
-function buy_x5()
-{
-
-  if(click_count >= upgrade_cost * 5 + 5)
-  {
-    upgrade_cost = upgrade_cost + 5;
-    click_count = click_count - upgrade_cost*5 - 5;
-    upgrade_count = upgrade_count + 5;
-    dont_go_over();
-  }
-  update_display();
-
+//got to keep it up to date
+function update(){
+    document.getElementById('clicks').textContent = clicks;
+    document.getElementById('w1').textContent = wood1;
+    document.getElementById('w2').textContent = wood2;
+    document.getElementById('w3').textContent = wood3;
 }
-
-function buy_x10()
-{
-  if(click_count >= upgrade_cost + 10)
-  {
-    upgrade_cost = upgrade_cost + 10;
-    click_count = click_count - upgrade_cost*10 - 10;
-    upgrade_count = upgrade_count + 10;
-    dont_go_over();
-  }
-  update_display();
-
-}
-
-function buy_x100()
-{
-  if(click_count >= upgrade_cost + 100)
-  {
-    click_count = click_count - upgrade_cost * 100;
-    upgrade_cost = upgrade_cost + 100;
-    upgrade_count = upgrade_count + 100;
-    dont_go_over();
-  }
-  update_display();
-
-}
-
-function btn_click_me()
-{
-  click_count = click_count + upgrade_count;
-  update_display();
-}
-
-function btn_reset()
-{
-  click_count = 0;
-  update_display();
-}
-
-function update_display()
-{
-  document.getElementById('counter').textContent = click_count;
-  document.getElementById('upgrade').textContent = upgrade_count;
-  document.getElementById('upgrade_btn').textContent = upgrade_count;
-  document.getElementById('upgrade_cost').textContent = upgrade_cost;
-  document.getElementById('trade
-
-
-}
+// and where at the end of this horrible code
 </script>
+<button onclick = "<div id ='clicks'></div>
 
-<button type="button" onclick="btn_click_me();"><img src= "data:image/jpeg;base64, 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" width = "100" height = "100"</button>
-<div id="counter"></div>
-<button type ="button" onclick="btn_right_amount();">click me if you have <div id = "upgrade_cost"></div></button>
-<button type="button" onclick="buy_x5();">click to buy x5</button>
-<button type="button" onclick="buy_x10();">click to buy x10</button>
-<button type="button" onclick="buy_x100();">click to buy x100</button>
-
+<div id ='w1'></div><p class = "p1">lv1 wood<button type = "button" onclick="sellwood1();">sell wood lv1</button>
+<div id ='w2'></div><p class = "p1">lv2 wood<button type = "button" onclick="sellwood2();">sell wood lv2</button>
+<div id ='w3'></div><p class = "p1">lv3 wood<button type = "button" onclick="sellwood3();">sell wood lv3</button>
 <h1></h1>
-
-<button type="button" onclick="btn_reset();">reset</button>
-
-
+<button type = "button"onclick = "wood_open();">click here to by wood</button>
 <h1></h1>
-
-
-<p1>you get <div id = "upgrade_btn"></div> per click</p1>
-
-
-<h1></h1>
-
-<button type="button" onclick = "
-
-
-
-<p3>this is version 0.3.5</p3>
+</p>
+</p>
+</p>
 
 
 </body>
-
-
-
-
 </html>
